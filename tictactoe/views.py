@@ -34,20 +34,19 @@ def klik(request, id):
         row = 1
     else :
         row = 2
-    print (board, row, col)
-    if board[row][col] != mm.blank :
-        return render(request,'tictactoe/tictactoe.html', context) 
-    board[row][col] = mm.opponent
-    if mm.isGoal(board, mm.opponent) :
+    if board[row][col] != mm.blank :                                    # jika kotak yang diklik tidak kosong
+        return render(request,'tictactoe/tictactoe.html', context)      # tidak melakukan apa apa, mengembalikan current state
+    board[row][col] = mm.opponent                                       # set kotak = opponent (Human)
+    if mm.isGoal(board, mm.opponent) :                                  # jika opponent menang
         msg = 'You Win!'
-    if mm.calcPion(board, mm.blank) == 0:
-        msg = 'Draw'
+    if mm.calcPion(board, mm.blank) == 0:                               # jika board penuh
+        msg = 'Draw'                                                    # draw
     else :
-        [row, col] = mm.findBestPos(board, mm.player)
-        board[row][col] = mm.player
-        if mm.isGoal(board, mm.player):
+        [row, col] = mm.findBestPos(board, mm.player)                   # cari posisi terbaik untuk langkah selanjutnya
+        board[row][col] = mm.player                                     # letakkan player pada posisi terbaik
+        if mm.isGoal(board, mm.player):                                 # jika player menang
             msg = ' You Lose'
-    context = {
+    context = {                                                         # set data yang dipassing ke view
         'row1' : board[0],
         'row2' : board[1],
         'row3' : board[2],
