@@ -1,5 +1,6 @@
+{% load static %}
 <head>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="{% static 'tictactoe\css\style.css' %}">
     <title>Tic Tac Toe</title>
 </head>
 
@@ -10,6 +11,6 @@
     </div>
 
     <div class="content">
-        <a href="tictactoe.html"><p>Start</p></a>
+        <a href="play"><p>Start</p></a>
     </div>
 </body>

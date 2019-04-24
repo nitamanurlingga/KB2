@@ -2,9 +2,9 @@
 INF = 1000
 ROW = 3
 COL = 3
-blank = ' '
-player = 'x'
-opponent = 'o'
+blank = '-'
+player = 'o'
+opponent = 'x'
 
 def calcPion(board : list, pion : str)->int :
     num = 0
@@ -80,25 +80,9 @@ def printBoard(board : list):
     for row in range(ROW) :
         print(board[row])
 
-if __name__ == '__main__' :
+def initBoard():
     board = [ [blank for col in range(COL)] for row in range(ROW) ]
-    while True :
-        [row, col] = [int(x) for x in input('[row] [col] : ').split()]
-        board[row][col] = opponent
-        printBoard(board)
-        print('-------------')
-        if isGoal(board, opponent) :
-            print('You win')
-            break
-        if calcPion(board, blank) == 0:
-            print('Draw')
-            break
-        [row, col] = findBestPos(board, player)
-        board[row][col] = player
-        printBoard(board)
-        if isGoal(board, player):
-            print('AI wins')
-            break
+    return board.copy()
 
 
 
